@@ -5,6 +5,11 @@
 """
 
 
+###
+# AVSC Exceptions
+###
+
+
 class AvscInvalid(Exception):
     """
     Purpose:
@@ -17,9 +22,23 @@ class AvscInvalid(Exception):
 class AvscNotFound(Exception):
     """
     Purpose:
-        The AvscNotFound will be raised when trying to Read/Write a .avro file
-        without a schema file
+        The AvscNotFound will be raised when trying to Read a .avsc file
+        that cannot be found.
     """
 
     pass
 
+
+###
+# AVRO Exceptions
+###
+
+
+class AvroNotFound(Exception):
+    """
+    Purpose:
+        The AvroNotFound will be raised when trying to Read a .avro file
+        that cannot be found.
+    """
+
+    pass
