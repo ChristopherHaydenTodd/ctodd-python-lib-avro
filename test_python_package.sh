@@ -6,5 +6,30 @@
 #    ./test.sh
 #
 
-echo "$(date +%c): Testing Package"
-pytest --color=yes --cov=avro_helpers --cov-fail-under=75 --cov-report=html --cov-report=term --maxfail=999 --verbose
+SETUP_FILE="./setup.py"
+
+# Parse CLI Arguments
+while [[ $# -gt 0 ]]
+do
+    key="$1"
+    case $key in
+        -S|-s|--setup)
+        SETUP_FILE="$2"
+        shift
+        shift
+        ;;
+        --setup=*)
+        SETUP_FILE="${1#*=}"
+        shift
+        ;;
+        *)
+        shift
+        ;;
+    esac
+done
+
+echo "$(date +%c): Running Unit Tests (Setup File = ${SETUP_FILE})"
+python3 ${SETUP_FILE} test
+
+TEST_STATUS=$?
+echo "$(date +%c): Test Exit Status - ${TEST_STATUS}"
