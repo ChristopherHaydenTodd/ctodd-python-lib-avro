@@ -7,6 +7,7 @@
 #
 
 SETUP_FILE="./setup.py"
+IGNORE_TEST_FAILURES="0"
 
 # Parse CLI Arguments
 while [[ $# -gt 0 ]]
@@ -22,13 +23,8 @@ do
         SETUP_FILE="${1#*=}"
         shift
         ;;
-        -F|-f|--file|--filename)
-        SETUP_FILE="$2"
-        shift
-        shift
-        ;;
-        --file=*|--filename=*)
-        SETUP_FILE="${1#*=}"
+        -F|-f|--force|--ignore-failures)
+        IGNORE_TEST_FAILURES="1"
         shift
         ;;
         *)
@@ -42,9 +38,9 @@ python3 ${SETUP_FILE} test
 
 TEST_STATUS=$?
 echo "$(date +%c): Test Exit Status - ${TEST_STATUS}"
-if [ ${TEST_STATUS} != "0" ]
+if [ ${TEST_STATUS} != "0" -a ${IGNORE_TEST_FAILURES} == "0" ]
 then
-    echo "$(date +%c): Tests Failed, Not Building"
+    echo "$(date +%c): Tests Failed and Force Not Set, Not Building"
     exit 1
 fi
 
