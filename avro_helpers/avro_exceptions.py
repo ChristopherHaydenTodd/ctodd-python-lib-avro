@@ -10,6 +10,15 @@
 ###
 
 
+class AvroTestException(Exception):
+    """
+    Purpose:
+        The AvscInvalid will be raised when reading the .avsc raises an exception
+    """
+
+    pass
+
+
 class AvscInvalid(Exception):
     """
     Purpose:
