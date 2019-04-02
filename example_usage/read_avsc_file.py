@@ -27,7 +27,7 @@ def main():
     Purpose:
         Read an .avro File
     """
-    print("Starting .avro Reading Process")
+    print("Starting .avsc Reading Process")
 
     opts = get_options()
 
@@ -35,7 +35,7 @@ def main():
 
     import pdb; pdb.set_trace()
 
-    print(".avro Reading Process Complete")
+    print(".avsc Reading Process Complete")
 
 
 ###
@@ -72,6 +72,15 @@ def get_options():
 
 
 if __name__ == "__main__":
+
+    log_level = logging.INFO
+    logging.getLogger().setLevel(log_level)
+    logging.basicConfig(
+        stream=sys.stdout,
+        level=log_level,
+        format="[read_avsc_file] %(asctime)s %(levelname)s %(message)s",
+        datefmt="%a, %d %b %Y %H:%M:%S"
+    )
 
     try:
         main()
