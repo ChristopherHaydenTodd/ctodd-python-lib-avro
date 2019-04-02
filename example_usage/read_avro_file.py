@@ -18,8 +18,6 @@ import sys
 from argparse import ArgumentParser
 
 # Local Library Imports
-BASE_PROJECT_PATH = f"{os.path.dirname(os.path.realpath(__file__))}/../"
-sys.path.insert(0, BASE_PROJECT_PATH)
 from avro_helpers import avro_reading_helpers
 
 
@@ -75,6 +73,15 @@ def get_options():
 
 
 if __name__ == "__main__":
+
+    log_level = logging.INFO
+    logging.getLogger().setLevel(log_level)
+    logging.basicConfig(
+        stream=sys.stdout,
+        level=log_level,
+        format="[read_avro_file] %(asctime)s %(levelname)s %(message)s",
+        datefmt="%a, %d %b %Y %H:%M:%S"
+    )
 
     try:
         main()

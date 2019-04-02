@@ -1,1 +1,2 @@
 avro-python3
+simplejson
