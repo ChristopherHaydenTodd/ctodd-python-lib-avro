@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3.6
 """
     Purpose:
         Read an .avsc File to get the schema
@@ -7,7 +7,10 @@
         - Read .avsc Schema
 
     function call:
-        python3 read_avsc_file.py --avsc="./avsc/test_schema.avsc"
+        python3.6 read_avsc_file.py {--avsc=avsc_filename}
+
+    example call:
+        python3.6 read_avsc_file.py --avsc="./avsc/test_schema.avsc"
 """
 
 # Python Library Imports

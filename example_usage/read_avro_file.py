@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3.6
 """
     Purpose:
         Read an .avro File
@@ -8,7 +8,11 @@
             - Read .avro File as Buffered List
             - Read .avro File as Generator
 
-    function call:python3 read_avsc_file.py --avro="./data/test_data.avro"
+    function call:
+        python3.6 read_avsc_file.py {--avro=avro_filename}
+
+    example call:
+        python3.6 read_avsc_file.py --avro="./data/test_data.avro"
 """
 
 # Python Library Imports
@@ -26,7 +30,7 @@ def main():
     Purpose:
         Read an .avro File
     """
-    print("Starting .avro Reading Process")
+    logging.info("Starting .avro Reading Process")
 
     opts = get_options()
 
@@ -36,7 +40,7 @@ def main():
 
     import pdb; pdb.set_trace()
 
-    print(".avro Reading Process Complete")
+    logging.info(".avro Reading Process Complete")
 
 
 ###
