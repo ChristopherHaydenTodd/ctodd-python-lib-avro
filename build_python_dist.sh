@@ -34,7 +34,7 @@ do
 done
 
 echo "$(date +%c): Running Unit Tests (Setup File = ${SETUP_FILE})"
-python3 ${SETUP_FILE} test
+python3.6 ${SETUP_FILE} test
 
 TEST_STATUS=$?
 echo "$(date +%c): Test Exit Status - ${TEST_STATUS}"
