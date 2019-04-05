@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+datingd #!/usr/bin/env python3.6
 """
     Purpose:
         Write an .avro File
@@ -8,6 +8,10 @@
             - Write .avro File
 
     function call:
+        python3.6 write_avro_file.py {--avro=avro_filename} \
+            {--avsc=avsc_filename}
+
+    example call:
         python3.6 write_avro_file.py --avro="./data/generated_data.avro" \
             --avsc="./avsc/test_schema.avsc"
 """

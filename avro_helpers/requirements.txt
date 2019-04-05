@@ -1,2 +1,2 @@
-avro-python3
-simplejson
+avro-python3>=1.8.2
+simplejson>=3.16.0

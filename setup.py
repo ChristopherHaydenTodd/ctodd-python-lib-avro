@@ -4,9 +4,9 @@
 """
 
 # Python Imports
+import re
 from os import listdir
 from setuptools import setup, find_packages
-import re
 
 
 ###
@@ -106,6 +106,28 @@ def get_requirements_files_in_package_dir(package_dir):
     return requirement_files
 
 
+def get_readme(readme_file_location="./README.md"):
+    """
+    Purpose:
+        Return the README details from the README.md for documentation
+    Args:
+        readme_file_location (String): Project README file
+    Return:
+        requirement_files (List of Strings): Requirement Files
+    """
+
+    readme_data = "Description Not Found"
+    try:
+        with open(readme_file_location, "r") as readme_file_object:
+            readme_data = readme_file_object.read()
+    except Exception as err:
+        print(
+            f"Failed to Get README.md Data from {readme_file_location}: {err}"
+        )
+
+    return readme_data
+
+
 ###
 # Main Functionality
 ###
@@ -121,8 +143,9 @@ def main():
         N/A
     """
 
-    # Get Version
+    # Get Version and README
     version = get_version_from_file()
+    readme = get_readme()
 
     # Get Packages
     packages = find_packages()
@@ -138,20 +161,33 @@ def main():
     dependency_links = []
 
     setup(
-        name="ctodd-python-lib-avro",
-        version=version,
-        python_requires=">3.0,<3.7",
-        description=("Python utilities used for interacting with .avro/.avsc files"),
-        url="https://github.com/ChristopherHaydenTodd/ctodd-python-lib-avro",
         author="Christopher H. Todd",
         author_email="Christopher.Hayden.Todd@gmail.com",
-        classifiers=["Programming Language :: Python"],
-        keywords=["python", "libraries", "avro", "avsc"],
-        packages=packages,
+        classifiers=[
+            'Development Status :: 5 - Production/Stable',
+            'Intended Audience :: Developers',
+            'Natural Language :: English',
+            'Programming Language :: Python',
+            'Programming Language :: Python :: 3',
+            'Programming Language :: Python :: 3.6',
+            'Programming Language :: Python :: 3.7',
+            'Programming Language :: Python :: 3.8',
+        ],
+        description=("Python utilities used for interacting with .avro/.avsc files"),
+        include_package_data=True,
         install_requires=install_requirements,
+        keywords=["python", "libraries", "avro", "avsc"],
+        license="MIT",
+        long_description=readme,
+        long_description_content_type='text/markdown',
+        name="ctodd-python-lib-avro",
+        packages=packages,
+        project_urls={},
+        python_requires=">3.6",
         setup_requires=setup_requirements,
         tests_require=test_requirements,
-        project_urls={},
+        url="https://github.com/ChristopherHaydenTodd/ctodd-python-lib-avro",
+        version=version,
     )
 
 
