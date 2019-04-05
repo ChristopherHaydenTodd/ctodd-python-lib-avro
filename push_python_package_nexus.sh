@@ -6,9 +6,9 @@
 #    ./push.sh --repository=http://localhost:8081/repository/pypi/
 #
 
-REPOSITORY_PROTOCOL="https"
+REPOSITORY_PROTOCOL="http"
 REPOSITORY_PORT="8081"
-REPOSITORY_HOST=""
+REPOSITORY_HOST="localhost"
 REPOSITORY_PYPI="pypi"
 USERNAME=""
 PASSWORD=""
