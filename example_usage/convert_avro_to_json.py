@@ -1,16 +1,14 @@
-#!/usr/bin/env python3.6
+#!/usr/bin/env python3
 """
     Purpose:
-        Read an .avsc File to get the schema
+        Convert an .avro File into a .json file
 
     Steps:
-        - Read .avsc Schema
+        - Either
+            - Read .avro File as Buffered List
+            - Write records to .json file
 
-    function call:
-        python3.6 read_avsc_file.py {--avsc=avsc_filename}
-
-    example call:
-        python3.6 read_avsc_file.py --avsc="./avsc/test_schema.avsc"
+    function call:python3 convert_avro_to_json.py --avro="./data/test_data.avro"
 """
 
 # Python Library Imports
@@ -20,9 +18,7 @@ import sys
 from argparse import ArgumentParser
 
 # Local Library Imports
-BASE_PROJECT_PATH = f"{os.path.dirname(os.path.realpath(__file__))}/../"
-sys.path.insert(0, BASE_PROJECT_PATH)
-from avro_helpers import avro_schema_helpers
+from avro_helpers import avro_converter_helpers
 
 
 def main():
@@ -30,15 +26,15 @@ def main():
     Purpose:
         Read an .avro File
     """
-    print("Starting .avsc Reading Process")
+    print("Starting .avro Converting Process")
 
     opts = get_options()
 
-    avro_schema = avro_schema_helpers.get_schema_from_avsc_file(opts.avsc_filename)
+    json_filename = avro_converter_helpers.convert_avro_file_to_json(
+        opts.avro_filename, json_filename=opts.json_filename
+    )
 
-    import pdb; pdb.set_trace()
-
-    print(".avsc Reading Process Complete")
+    print(".avro Converting Process Complete")
 
 
 ###
@@ -56,18 +52,23 @@ def get_options():
         N/A
     """
 
-    parser = ArgumentParser(description="Read .avsc File")
+    parser = ArgumentParser(description="Read .avro File")
     required = parser.add_argument_group('Required Arguments')
     optional = parser.add_argument_group('Optional Arguments')
 
     # Optional Arguments
-    # N/A
+    optional.add_argument(
+        "--json",
+        dest="json_filename",
+        help="Filename (and path) of .json file to write",
+        required=False,
+    )
 
     # Required Arguments
     required.add_argument(
-        "--avsc",
-        dest="avsc_filename",
-        help="Filename (and path) of .avsc file to read",
+        "--avro",
+        dest="avro_filename",
+        help="Filename (and path) of .avro file to read",
         required=True,
     )
 
@@ -81,7 +82,7 @@ if __name__ == "__main__":
     logging.basicConfig(
         stream=sys.stdout,
         level=log_level,
-        format="[read_avsc_file] %(asctime)s %(levelname)s %(message)s",
+        format="[convert_avro_to_json] %(asctime)s %(levelname)s %(message)s",
         datefmt="%a, %d %b %Y %H:%M:%S"
     )
 
