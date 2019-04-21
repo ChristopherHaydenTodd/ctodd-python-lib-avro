@@ -1,5 +1,3 @@
-
-
 # Christopher H. Todd's Python Lib for AVRO/AVSC
 
 The ctodd-python-lib-avro project is responsible for interacting with [Apache AVRO](https://avro.apache.org/docs/1.8.2/gettingstartedpython.html). This includes converting to byte arrays and from byte arrays, writing and reading .avro files, writing and reading .avsc files, and other minor quality of life wrappers.
